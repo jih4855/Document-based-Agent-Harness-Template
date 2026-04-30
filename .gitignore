@@ -1,0 +1,39 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.token
+
+# Live private context
+context/memory.md
+context/task.md
+context/*.local.md
+
+# Logs and temporary files
+*.log
+*.tmp
+tmp/
+temp/
+.cache/
+
+# Dependencies and build outputs
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+dist/
+build/
+out/
+.next/
+.turbo/
+
+# Tool state
+.claude.local/
+.codex.local/
