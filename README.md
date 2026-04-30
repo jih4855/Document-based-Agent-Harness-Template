@@ -1,25 +1,33 @@
 # Document-Based Agent Harness Template
 
-A minimal, document-based harness for coding agents and workflow agents.
+> A lightweight Markdown harness for coding agents, workflow agents, and
+> long-running personal automation projects.
 
-This template does not ship an app, package, or runtime. It provides a repeatable
-folder structure and Markdown contracts that help an agent load context, follow
-local rules, use skills, and leave useful state for the next session.
+[![Template](https://img.shields.io/badge/type-template-111827)](#quick-start)
+[![Markdown](https://img.shields.io/badge/built_with-Markdown-2563eb)](#folder-structure)
+[![Language](https://img.shields.io/badge/language-EN%20%2F%20KO-16a34a)](#korean-edition)
 
-## What This Is
+This repository is a **document-first agent harness**. It does not ship an app,
+package, CLI, or SDK. Instead, it gives an agent a clear set of Markdown files
+for context, task state, durable tacit knowledge, and reusable skills.
 
-An agent harness is the control layer around an LLM-driven workflow. In this
-template, the control layer is expressed as documents:
+Use it when you want an agent to behave consistently across sessions without
+building a custom runtime.
 
-- `agent.md` defines the workspace operating contract.
-- `context/tacit.md` stores durable rules, preferences, and lessons.
-- `context/memory.example.md` shows how to keep cross-session state.
-- `context/task.example.md` shows how to keep active work visible.
-- `skills/index.md` lists available skills and defines how to write reusable
-  skill documents.
+## Why This Exists
 
-Use this when you want your agent to behave consistently across sessions without
-building a full custom SDK or CLI.
+LLM agents work better when the operating rules are explicit. A short prompt is
+easy to lose. A documented workspace is easier to inspect, reuse, and improve.
+
+This template gives you a small control layer:
+
+| Layer | File | Purpose |
+| --- | --- | --- |
+| Root contract | `agent.md` | What the agent must read and how it should work |
+| Tacit knowledge | `context/tacit.md` | Durable rules, preferences, lessons, and index notes |
+| Session memory | `context/memory.example.md` | Example format for cross-session project memory |
+| Task state | `context/task.example.md` | Example format for active work and decisions |
+| Skill index | `skills/index.md` | Skill catalog, authoring rules, and subagent notes |
 
 ## Folder Structure
 
@@ -48,46 +56,37 @@ building a full custom SDK or CLI.
 
 ## Quick Start
 
-1. Create a repository from this template.
-2. Copy the example state files:
+Create live state files from the examples:
 
 ```bash
 cp context/memory.example.md context/memory.md
 cp context/task.example.md context/task.md
 ```
 
-3. Open the repository in your agent tool.
-4. Tell the agent to read `agent.md` first.
-5. Add project-specific rules to `context/tacit.md`.
-6. Add reusable workflows under `skills/` as Markdown documents when needed.
-7. Update `skills/index.md` whenever you add, rename, or remove a skill.
+Then open the repository in your agent tool and tell the agent:
 
-## Korean Edition
+```text
+Read agent.md first, then follow the required reading order.
+```
 
-A Korean version of the same template is available in `ko/`.
+After that:
 
-To start a Korean-only repository, copy the contents of `ko/` to your project
-root and use that folder structure as the base template.
+1. Add project-specific operating rules to `context/tacit.md`.
+2. Track active work in `context/task.md`.
+3. Record durable decisions in `context/memory.md`.
+4. Add repeatable workflows under `skills/`.
+5. Update `skills/index.md` whenever a skill changes.
 
-## Tool Notes
+## Core Rules
 
-Different agent tools load project instructions differently.
-
-- If your tool auto-loads `AGENTS.md`, copy or symlink `agent.md` to `AGENTS.md`.
-- If your tool auto-loads `CLAUDE.md`, copy or symlink `agent.md` to `CLAUDE.md`.
-- If your tool supports custom skills, place skill folders under `skills/` or
-  adapt the structure to that tool's expected skill directory.
-
-This template intentionally keeps the source documents neutral and portable.
-
-## Design Rules
-
-- Keep instructions short, explicit, and operational.
-- Store reusable behavior in Markdown before adding scripts.
-- Keep private state in untracked files such as `context/memory.md` and
-  `context/task.md`.
-- Do not commit secrets, tokens, personal schedules, or private customer data.
-- Update memory after meaningful decisions so the next session can continue.
+- Keep `agent.md` as the root operating contract.
+- Keep `context/tacit.md` as the current tacit knowledge index.
+- Keep `skills/index.md` as the current skill index.
+- Store live private state in `context/memory.md` and `context/task.md`.
+- Do not commit secrets, tokens, private schedules, customer data, or local
+  credentials.
+- Configure skills and subagents for your actual workflow. This template only
+  provides the structure.
 
 ## Suggested Skill Shape
 
@@ -96,8 +95,47 @@ When you add a real skill later, prefer this shape:
 ```text
 skills/
 └── my-skill/
-    └── skill.md
+    └── SKILL.md
 ```
 
-Keep each skill focused on one workflow. Add scripts only inside your private
-project when a Markdown playbook is not enough.
+Each skill should describe:
+
+- when to use it
+- required inputs
+- step-by-step workflow
+- verification checks
+- failure handling
+- optional subagent delegation rules
+
+## Tool Notes
+
+Different agent tools load project instructions differently.
+
+| Tool behavior | Recommended setup |
+| --- | --- |
+| Auto-loads `AGENTS.md` | Copy or symlink `agent.md` to `AGENTS.md` |
+| Auto-loads `CLAUDE.md` | Copy or symlink `agent.md` to `CLAUDE.md` |
+| Supports custom skills | Adapt `skills/` to that tool's skill directory |
+| Does not auto-load files | Explicitly tell the agent to read `agent.md` first |
+
+The template intentionally stays portable and tool-neutral.
+
+## Korean Edition
+
+A Korean version of the same template is available in `ko/`.
+
+To start a Korean-only repository, copy the contents of `ko/` to your project
+root and use that folder structure as the base template.
+
+## What This Is Not
+
+This is not:
+
+- an npm package
+- an agent SDK
+- a hosted runtime
+- a prompt collection
+- a replacement for tool-specific documentation
+
+It is a minimal workspace contract for agents that already know how to read
+files, follow instructions, and use tools.

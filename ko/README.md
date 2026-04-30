@@ -76,7 +76,7 @@ cp context/task.example.md context/task.md
 ```text
 skills/
 └── my-skill/
-    └── skill.md
+    └── SKILL.md
 ```
 
 각 스킬은 하나의 작업 흐름에 집중합니다. Markdown 플레이북만으로 부족할 때만

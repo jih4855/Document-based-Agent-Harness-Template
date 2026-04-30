@@ -15,7 +15,7 @@ When you add one, replace the example row below:
 
 | Skill | Path | Use When |
 | --- | --- | --- |
-| Example skill | `skills/<skill-name>/skill.md` | Example trigger condition |
+| Example skill | `skills/<skill-name>/SKILL.md` | Example trigger condition |
 
 ## When To Create A Skill
 
@@ -41,7 +41,7 @@ Too broad:
 ```text
 skills/
 └── skill-name/
-    └── skill.md
+    └── SKILL.md
 ```
 
 Use this content shape:

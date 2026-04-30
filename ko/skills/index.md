@@ -14,7 +14,7 @@
 
 | 스킬 | 경로 | 사용 조건 |
 | --- | --- | --- |
-| 예시 스킬 | `skills/<skill-name>/skill.md` | 예시 트리거 조건 |
+| 예시 스킬 | `skills/<skill-name>/SKILL.md` | 예시 트리거 조건 |
 
 ## 언제 스킬을 만들까
 
@@ -40,7 +40,7 @@
 ```text
 skills/
 └── skill-name/
-    └── skill.md
+    └── SKILL.md
 ```
 
 권장 내용 구조:
