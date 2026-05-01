@@ -42,17 +42,23 @@ contract, not replace it.
 
 ## Tool Discovery
 
-The runtime agent catalog (which subagents exist, which tools they have, how
-they are invoked) is owned by the agent tool, not this file.
+The runtime agent catalog is owned by the active agent tool, not this file. This
+file governs delegation policy. `context/runtime_agents/` is the portable source
+of truth for handoff templates.
 
-- In Claude Code, register subagents under `.claude/agents/<name>.md` and use
-  `/agents` to list them. The frontmatter `description` field controls auto
-  delegation triggers.
-- In tool-neutral setups, use `context/runtime_agents/<name>.md` as the source
-  of truth and inject the file contents into the subagent prompt at invocation
-  time.
-
-Either way, this file governs **policy**, not the catalog.
+- In Claude Code, project subagents live in `.claude/agents/<name>.md`, and
+  user-level subagents live in `~/.claude/agents/<name>.md`. Use `/agents` to
+  create, inspect, and manage them. The frontmatter `description` field is an
+  important signal for automatic delegation.
+- In Codex, tool-specific reusable roles can be mirrored in project Codex config
+  when supported, for example `.codex/config.toml` plus
+  `.codex/agents/<name>.toml`. Keep portable handoff instructions in
+  `context/runtime_agents/<name>.md` and point Codex-specific role files back to
+  that template.
+- In tool-neutral setups, keep `context/runtime_agents/<name>.md` as the harness
+  source of truth. When the active runtime supports delegation, inject that file's
+  contents into the subagent prompt at invocation time. If it does not support
+  delegation, the main agent can use the same file as an execution playbook.
 
 ## Escalation Rule
 

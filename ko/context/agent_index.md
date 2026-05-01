@@ -42,16 +42,21 @@
 
 ## 도구별 디스커버리
 
-런타임 에이전트 카탈로그(어떤 서브에이전트가 존재하는지, 어떤 도구를 가졌는지,
-어떻게 호출되는지)는 이 파일이 아니라 사용하는 에이전트 도구가 소유합니다.
+런타임 에이전트 카탈로그는 이 파일이 아니라 활성 에이전트 도구가 소유합니다.
+이 파일은 위임 정책을 다룹니다. `context/runtime_agents/`는 handoff template의
+portable source of truth입니다.
 
-- Claude Code에서는 `.claude/agents/<name>.md`로 서브에이전트를 등록하고
-  `/agents`로 목록을 확인합니다. frontmatter의 `description` 필드가 자동 위임
-  트리거를 제어합니다.
-- 도구 중립 환경에서는 `context/runtime_agents/<name>.md`를 SSOT로 두고 호출
-  시점에 파일 내용을 서브에이전트 프롬프트에 주입합니다.
-
-어느 쪽이든 이 파일은 **정책**을 다루며 카탈로그를 다루지 않습니다.
+- Claude Code에서는 프로젝트 subagent를 `.claude/agents/<name>.md`, 사용자 전역
+  subagent를 `~/.claude/agents/<name>.md`에 둡니다. `/agents`로 생성, 검사, 관리할
+  수 있습니다. frontmatter의 `description` 필드는 자동 위임 판단의 중요한 신호입니다.
+- Codex에서는 지원되는 경우 `.codex/config.toml`과 `.codex/agents/<name>.toml` 같은
+  프로젝트 Codex config에 도구 전용 reusable role을 mirror할 수 있습니다. portable
+  handoff 지침은 `context/runtime_agents/<name>.md`에 두고, Codex 전용 role 파일은
+  그 template을 다시 가리키게 합니다.
+- 도구 중립 환경에서는 `context/runtime_agents/<name>.md`를 하니스의 source of truth로
+  둡니다. 활성 런타임이 위임을 지원하면 호출 시점에 파일 내용을 서브에이전트
+  프롬프트에 주입합니다. 위임을 지원하지 않으면 메인이 같은 파일을 실행 playbook으로
+  사용할 수 있습니다.
 
 ## 에스컬레이션 규칙
 
