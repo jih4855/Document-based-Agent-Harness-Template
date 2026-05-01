@@ -15,10 +15,11 @@
 
 1. `agent.md`
 2. `context/tacit.md`
-3. `context/task.md`가 있으면 읽고, 없으면 `context/task.example.md`를 읽습니다.
-4. `context/memory.md`가 있으면 읽고, 없으면 `context/memory.example.md`를 읽습니다.
-5. `skills/index.md`
-6. 현재 작업과 직접 관련 있는 스킬 문서
+3. `context/agent_index.md`
+4. `context/task.md`가 있으면 읽고, 없으면 `context/task.example.md`를 읽습니다.
+5. `context/memory.md`가 있으면 읽고, 없으면 `context/memory.example.md`를 읽습니다.
+6. `skills/index.md`
+7. 현재 작업과 직접 관련 있는 스킬 문서
 
 `@context/tacit.md` 같은 include 문법에 의존하지 않습니다. 일부 런타임은 include를
 펼치지 않습니다. 필요한 파일은 직접 읽습니다.
@@ -37,6 +38,7 @@
 ## 맥락 규칙
 
 - `context/tacit.md`는 지속 규칙, 선호, 관례, 교훈을 저장합니다.
+- `context/agent_index.md`는 반복 업무를 문서화된 런타임 에이전트로 라우팅합니다.
 - `context/memory.md`는 최근 세션 간 상태를 저장합니다.
 - `context/task.md`는 현재 작업과 다음 행동을 저장합니다.
 - 예시 파일은 템플릿입니다. `*.example.md`를 실제 상태 파일로 취급하지 않습니다.
@@ -50,6 +52,18 @@
   `context/task.md`, 최근 프로젝트 상태는 `context/memory.md`에 둡니다.
 - `context/tacit.md`를 최신 암묵지 인덱스로 유지합니다. 나중에 세부 규칙을
   다른 context 파일로 분리하면 즉시 이 인덱스를 갱신합니다.
+
+## 위임 규칙
+
+- 메인 에이전트는 사용자와 전략, 선호, 운영 기준, tacit, skill, 위임 구조를
+  조율하고 갱신합니다.
+- 서브에이전트는 문서화된 반복 업무를 처리하는 런타임 실행자입니다. 한 번에
+  하나의 업무, 필요한 최소 맥락, `context/agent_index.md`에 정의된 공통 출력
+  계약만 전달합니다.
+- 서브에이전트가 맥락, 권한, 인증, 판단 기준 때문에 막히면 메인이 멘토링,
+  좁은 재지시, 직접 인수 중 하나로 처리합니다.
+- 정책 변경, 취향 조율, 새 workflow 설계는 사용자가 명시적으로 요청하지 않는 한
+  서브에이전트에 넘기지 않습니다.
 
 ## 스킬 규칙
 

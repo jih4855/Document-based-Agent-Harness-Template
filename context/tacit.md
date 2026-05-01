@@ -20,6 +20,15 @@ repeatable workflows.
 - Prefer Markdown playbooks before adding automation.
 - Use example files as templates, not live state.
 
+## Main/Subagent Split
+
+- The main agent discusses strategy, taste, standards, and workflow changes with
+  the user.
+- Subagents execute documented, repeatable tasks from skills or runtime
+  templates.
+- When a subagent is blocked or a rule needs to change, route the decision back
+  to the main agent.
+
 ## Context Hygiene
 
 - Update `context/memory.md` after meaningful decisions.
@@ -28,6 +37,8 @@ repeatable workflows.
 - Keep long logs, generated artifacts, and local notes out of Git.
 - Treat this file as the current tacit index. If detailed tacit notes are split
   into additional context files later, add or update the link here immediately.
+- Treat `context/agent_index.md` as the delegation router when repeatable
+  subagent work is introduced.
 
 ## Tacit Update Rules
 

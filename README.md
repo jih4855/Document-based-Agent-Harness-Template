@@ -25,6 +25,7 @@ This template gives you a small control layer:
 | --- | --- | --- |
 | Root contract | `agent.md` | What the agent must read and how it should work |
 | Tacit knowledge | `context/tacit.md` | Durable rules, preferences, lessons, and index notes |
+| Delegation router | `context/agent_index.md` | Which work stays with the main agent and which work can be delegated |
 | Session memory | `context/memory.example.md` | Example format for cross-session project memory |
 | Task state | `context/task.example.md` | Example format for active work and decisions |
 | Skill index | `skills/index.md` | Skill catalog, authoring rules, and subagent notes |
@@ -38,6 +39,9 @@ This template gives you a small control layer:
 ├── .gitignore
 ├── context/
 │   ├── tacit.md
+│   ├── agent_index.md
+│   ├── runtime_agents/
+│   │   └── README.md
 │   ├── memory.example.md
 │   └── task.example.md
 ├── skills/
@@ -48,6 +52,9 @@ This template gives you a small control layer:
     ├── .gitignore
     ├── context/
     │   ├── tacit.md
+    │   ├── agent_index.md
+    │   ├── runtime_agents/
+    │   │   └── README.md
     │   ├── memory.example.md
     │   └── task.example.md
     └── skills/
@@ -72,15 +79,37 @@ Read agent.md first, then follow the required reading order.
 After that:
 
 1. Add project-specific operating rules to `context/tacit.md`.
-2. Track active work in `context/task.md`.
-3. Record durable decisions in `context/memory.md`.
-4. Add repeatable workflows under `skills/`.
-5. Update `skills/index.md` whenever a skill changes.
+2. Add repeatable delegation rules to `context/agent_index.md`.
+3. Track active work in `context/task.md`.
+4. Record durable decisions in `context/memory.md`.
+5. Add repeatable workflows under `skills/`.
+6. Update `skills/index.md` whenever a skill changes.
+
+## Governance Model
+
+Use the main agent for governance and user-facing judgment:
+
+- clarify strategy, preferences, tone, and operating standards with the user
+- decide whether a new workflow deserves a skill or a subagent
+- update tacit rules, skills, and delegation indexes
+- mentor or take over when a delegated agent is blocked
+
+Use subagents as runtime executors:
+
+- handle one delegated task at a time
+- follow documented skills and runtime templates
+- report changed files, checks, blockers, and recommended next steps
+- avoid inventing new policy or preference rules without routing them back to
+  the main agent
+
+The split is simple: the main agent changes the rules with the user; subagents
+repeat the documented work.
 
 ## Core Rules
 
 - Keep `agent.md` as the root operating contract.
 - Keep `context/tacit.md` as the current tacit knowledge index.
+- Keep `context/agent_index.md` as the current delegation router.
 - Keep `skills/index.md` as the current skill index.
 - Store live private state in `context/memory.md` and `context/task.md`.
 - Do not commit secrets, tokens, private schedules, customer data, or local

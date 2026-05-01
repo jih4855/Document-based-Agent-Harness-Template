@@ -15,10 +15,11 @@ At the start of a session, read these files in order:
 
 1. `agent.md`
 2. `context/tacit.md`
-3. `context/task.md` if it exists, otherwise `context/task.example.md`
-4. `context/memory.md` if it exists, otherwise `context/memory.example.md`
-5. `skills/index.md`
-6. Any skill document directly relevant to the current task
+3. `context/agent_index.md`
+4. `context/task.md` if it exists, otherwise `context/task.example.md`
+5. `context/memory.md` if it exists, otherwise `context/memory.example.md`
+6. `skills/index.md`
+7. Any skill document directly relevant to the current task
 
 Do not depend on include syntax such as `@context/tacit.md`. Some runtimes do not
 expand includes. Read the files directly.
@@ -37,6 +38,7 @@ Use this loop for every non-trivial task:
 ## Context Rules
 
 - `context/tacit.md` stores durable rules, preferences, conventions, and lessons.
+- `context/agent_index.md` routes repeatable work to documented runtime agents.
 - `context/memory.md` stores recent cross-session state.
 - `context/task.md` stores active work and next actions.
 - Example files are templates. Do not treat `*.example.md` as live state.
@@ -51,6 +53,18 @@ Use this loop for every non-trivial task:
   for active work and `context/memory.md` for recent project state.
 - Keep `context/tacit.md` as the current tacit index. If you split detailed
   rules into additional context files later, update the index immediately.
+
+## Delegation Rules
+
+- The main agent owns user-facing strategy, preference changes, operating rules,
+  and updates to tacit knowledge, skills, and delegation structure.
+- Subagents are runtime executors for documented, repeatable work. Give each
+  subagent one task, the minimum necessary context, and the common output
+  contract defined in `context/agent_index.md`.
+- If a subagent is blocked by missing context, permissions, credentials, or
+  judgment calls, the main agent mentors, narrows the instruction, or takes over.
+- Do not delegate policy changes, taste calibration, or new workflow design
+  unless the user explicitly asks for independent analysis.
 
 ## Skill Rules
 

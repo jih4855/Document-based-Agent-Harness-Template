@@ -89,4 +89,4 @@ What this skill helps the agent do.
   trigger.
 - Configure subagents for the user's actual workflow. If a skill should be
   delegated to a specialist agent, document the recommended model, scope, and
-  handoff conditions in that skill or in this index.
+  handoff conditions in that skill, this index, or `context/agent_index.md`.
