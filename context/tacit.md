@@ -35,6 +35,8 @@ repeatable workflows.
 - Update `context/task.md` after task status changes.
 - Keep secrets and personal data out of tracked context.
 - Keep long logs, generated artifacts, and local notes out of Git.
+- Before committing, remember the golden rule: built, fetched, generated, and
+  secret files do not belong in the repository.
 - Treat this file as the current tacit index. If detailed tacit notes are split
   into additional context files later, add or update the link here immediately.
 - Treat `context/agent_index.md` as the delegation router when repeatable

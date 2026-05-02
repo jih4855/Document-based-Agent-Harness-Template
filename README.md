@@ -36,7 +36,6 @@ This template gives you a small control layer:
 .
 ├── README.md
 ├── agent.md
-├── .gitignore
 ├── context/
 │   ├── tacit.md
 │   ├── agent_index.md
@@ -49,7 +48,6 @@ This template gives you a small control layer:
 └── ko/
     ├── README.md
     ├── agent.md
-    ├── .gitignore
     ├── context/
     │   ├── tacit.md
     │   ├── agent_index.md
@@ -114,6 +112,9 @@ repeat the documented work.
 - Store live private state in `context/memory.md` and `context/task.md`.
 - Do not commit secrets, tokens, private schedules, customer data, or local
   credentials.
+- Golden commit rule: do not commit what is built, fetched, generated, or
+  secret. Examples: `dist/`, `build/`; `node_modules/`, `vendor/`; caches and
+  logs; `.env`, keys, and tokens.
 - Configure skills and subagents for your actual workflow. This template only
   provides the structure.
 

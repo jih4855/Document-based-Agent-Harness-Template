@@ -82,6 +82,9 @@ Use this loop for every non-trivial task:
 
 ## Safety Rules
 
+- Golden commit rule: do not commit what is built, fetched, generated, or secret.
+  Examples: `dist/`, `build/`; `node_modules/`, `vendor/`; caches and logs;
+  `.env`, keys, and tokens.
 - Never commit `.env`, API keys, OAuth tokens, private customer data, or personal
   schedules.
 - Before running commands with side effects, understand the target path and
