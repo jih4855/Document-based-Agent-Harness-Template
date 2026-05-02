@@ -36,6 +36,7 @@ This template gives you a small control layer:
 .
 ├── README.md
 ├── agent.md
+├── .gitignore
 ├── context/
 │   ├── tacit.md
 │   ├── agent_index.md
@@ -48,6 +49,7 @@ This template gives you a small control layer:
 └── ko/
     ├── README.md
     ├── agent.md
+    ├── .gitignore
     ├── context/
     │   ├── tacit.md
     │   ├── agent_index.md
