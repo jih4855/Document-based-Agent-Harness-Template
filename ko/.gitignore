@@ -1,0 +1,39 @@
+# 운영체제 파일
+.DS_Store
+Thumbs.db
+
+# 비밀 정보와 로컬 환경
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.token
+
+# 실제 개인 맥락
+context/memory.md
+context/task.md
+context/*.local.md
+
+# 로그와 임시 파일
+*.log
+*.tmp
+tmp/
+temp/
+.cache/
+
+# 의존성 및 빌드 산출물
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+dist/
+build/
+out/
+.next/
+.turbo/
+
+# 도구별 로컬 상태
+.claude.local/
+.codex.local/
